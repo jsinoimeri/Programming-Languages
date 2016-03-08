@@ -1,0 +1,15 @@
+#!/usr/bin/ksh
+
+bison -dt -o $1.c $1.y
+flex -t $2.l > $2.c
+cc -c -o $1.o $1.c
+cc -c -o $2.o $2.c
+cc -c -o $3.o $3.c
+cc -o LRParser $1.o $2.o $3.o -lm
+rm $1.o $1.c $1.h $2.o $2.c $3.o
+
+print "\nExecuting LRParser\n-----------------\n"
+
+./LRParser
+
+print "\n\n-----------------\nExecution of LRParser finished\n"
